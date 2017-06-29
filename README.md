@@ -9,8 +9,10 @@ java main
 
 できたクラスファイルはbinに入れておこう
 
-## Git usage
-ローカルにコピー)  git clone https://github.com/kokimame/textile.git
+## How to contribute
+Githubでこのレポをfork
+
+ローカルにコピー)  git clone https://github.com/<username\>/textile.git
 
 変更箇所をステージ)  git add \<modified or new files\>
 
