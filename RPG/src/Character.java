@@ -1,13 +1,15 @@
 
 public class Character {
 
+	private String name;
 	private int hp;
 	private int x;
 	private int y;
 	private int attack;
 
 
-	public Character(int hp, int x, int y, int ap) {
+	public Character(String name, int hp, int x, int y, int ap) {
+		this.name = name;
 		this.hp = hp;
 		this.x = x;
 		this.y = y;
@@ -58,9 +60,14 @@ public class Character {
 	}
 
 
-	int get_hp() {
+	public int get_hp() {
 		return this.hp;
 	}
+	
+	public String get_name() {
+		return name;
+	}
+
 
 	public int[] get_position() {
 		int[] pos = new int[2];

@@ -8,8 +8,8 @@ public class Player extends Character{
 	int x, y;
 	private ArrayList<Item> inventory = new ArrayList<Item>();
 
-	public Player(int hp, int x, int y, int ap){
-		super(hp, x, y, ap);
+	public Player(String name, int hp, int x, int y, int ap){
+		super(name, hp, x, y, ap);
 		this.x = x;
 		this.y = y;
 

@@ -14,16 +14,12 @@ public class main {
 		char map[][] = new char[Height][Width];
 		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
-		Player player = new Player(10, 0, 0, 5);
-		enemies.add(new Zombie(10, 4, 0, "ゾンビA"));
-		enemies.add(new Zombie(10, 3, 3, "ゾンビB"));
-
-		System.out.println("HP: " + player.get_hp());
+		Player player = new Player("ユウシャ", 10, 0, 0, 5);
+		enemies.add(new Zombie("ゾンビA", 10, 4, 0));
+		enemies.add(new Zombie("ゾンビB", 10, 3, 3));
 
 		for(;;){
-			System.out.println("player hp: " + player.get_hp());
-			//System.out.println( enemies.get(0).get_name() + " hp: " + enemies.get(0).get_hp());
-			//System.out.println( enemies.get(1).get_name() + " hp: " + enemies.get(1).get_hp());
+			System.out.println(player.get_name() + "　ＨＰ：" + player.get_hp());
 			show_map(map, player, enemies);
 			update(player, enemies);
 
@@ -46,8 +42,7 @@ public class main {
 
 		for(i = 0; i < enemies.size(); i++) {
 			e_pos = enemies.get(i).get_position();
-			//System.out.println(e_pos[0] + "," + e_pos[1] + "/" + enemies.size());
-
+			
 			if(p_pos[0] == e_pos[0] - 1 && p_pos[1] == e_pos[1])
 				battle(player, enemies.get(i));
 			else if(p_pos[0] == e_pos[0] + 1 && p_pos[1] == e_pos[1])
@@ -58,18 +53,21 @@ public class main {
 				battle(player, enemies.get(i));
 
 			if(enemies.get(i).get_hp() <= 0){
-				System.out.println(enemies.get(i).get_name() + " ヲ タオシタ");
+				System.out.println(enemies.get(i).get_name() + " を　たおした");
 				enemies.remove(i);
 				break;}
 		}
-
 	}
 
 
 	static void battle(Player player, Enemy enemy) {
 
 		enemy.get_damage(player.attack());
+		System.out.println(player.get_name() + "　が　" + enemy.get_name() 
+				+ "　に　" + player.attack() + "　の　ダメージ　を　あたえた");
 		player.get_damage(enemy.attack());
+		System.out.println(enemy.get_name() + "　が　" + player.get_name() 
+				+ "　に　" + enemy.attack() + "　の　ダメージ　を　あたえた");
 
 	}
 
@@ -80,7 +78,7 @@ public class main {
 		for(i = 0; i < map.length; i++){
 			for(j = 0; j < map[0].length; j++) {
 				if(i == p_pos[1] && j == p_pos[0])
-					map[i][j] = 'Ｐ';
+					map[i][j] = '勇';
 				else if(i == map.length - 1 && j == map[0].length - 1)
 					map[i][j] = 'Ｇ';
 				else if((i == 1 || i == 2 || i == 3 || i == 4 || i == 5) && j == 4)
