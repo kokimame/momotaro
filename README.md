@@ -1,1 +1,1 @@
-実験で作ったRPGです．PR送ってね
+はりぼて roguelike RPG
