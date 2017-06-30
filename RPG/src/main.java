@@ -13,6 +13,7 @@ public class main {
 		int Height = 6;
 		char map[][] = new char[Height][Width];
 		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+		ArrayList<Item> drops = new ArrayList<Item>();
 
 		Player player = new Player("ユウシャ", '勇', 10, 0, 0, 5);
 		enemies.add(new Zombie("ゾンビA", 'ゾ', 10, 4, 0));
@@ -20,21 +21,21 @@ public class main {
 
 		for(;;){
 			System.out.println(player.get_name() + "　ＨＰ：" + player.get_hp());
-			show_map(map, player, enemies);
-			update(player, enemies);
+			show_map(map, player, enemies, drops);
+			update(player, enemies, drops);
 
 		}
 
 	}
 
-	static void update(Player player, ArrayList<Enemy> enemies) {
+	static void update(Player player, ArrayList<Enemy> enemies, ArrayList<Item> drops) {
 		player.update();
 
-		near_enemies(player, enemies);
+		near_enemies(player, enemies, drops);
 
 	}
 
-	static void near_enemies(Player player, ArrayList<Enemy> enemies) {
+	static void near_enemies(Player player, ArrayList<Enemy> enemies, ArrayList<Item> drops) {
 
 		int i;
 		int[] p_pos = player.get_position();
@@ -55,6 +56,7 @@ public class main {
 			if(enemies.get(i).get_hp() <= 0){
 				System.out.println(player.get_name() + "　は　" + enemies.get(i).get_name() 
 						+ " を　たおした");
+				enemies.get(i).drop(drops);
 				enemies.remove(i);
 				i = 0;
 			}
@@ -73,7 +75,7 @@ public class main {
 
 	}
 
-	static void show_map(char map[][], Player p, ArrayList<Enemy> e) {
+	static void show_map(char map[][], Player p, ArrayList<Enemy> e, ArrayList<Item> items) {
 		int i, j;
 		int[] p_pos = p.get_position() ;
 
@@ -82,7 +84,7 @@ public class main {
 				if(i == p_pos[1] && j == p_pos[0])
 					map[i][j] = p.get_token();
 				else if(i == map.length - 1 && j == map[0].length - 1)
-					map[i][j] = 'Ｇ';
+					map[i][j] = '◎';
 				else if((i == 1 || i == 2 || i == 3 || i == 4 || i == 5) && j == 4)
 					map[i][j] = '■';
 				else
@@ -93,6 +95,8 @@ public class main {
 		for(i = 0; i < e.size(); i++)
 			map[e.get(i).get_position()[1]][e.get(i).get_position()[0]] = e.get(i).get_token();
 
+		for(i = 0; i < items.size(); i++)
+			map[items.get(i).get_position()[1]][items.get(i).get_position()[0]] = items.get(i).get_token();
 
 
 		for(i = 0; i < map.length; i++){
@@ -102,7 +106,5 @@ public class main {
 			System.out.println();
 		}
 
-
 	}
-
 }

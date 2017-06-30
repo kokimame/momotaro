@@ -6,16 +6,17 @@ import java.util.ArrayList;
 public class Player extends Character{
 
 	int x, y;
+	int gold;		// Total value of golds the player has
 	private ArrayList<Item> inventory = new ArrayList<Item>();
 
 	public Player(String name, char token, int hp, int x, int y, int ap){
 		super(name, token, hp, x, y, ap);
 		this.x = x;
 		this.y = y;
+		this.gold = 0;
 
-		add_item(new Item("・ツルギ", 10, 0));
-		add_item(new Item("・ヤクソウ", 0, 10));
-
+		add_item(new Item("ツルギ", '剣', 10, 'A'));
+		add_item(new Item("ヤクソウ", '薬', 10, 'H'));
 	}
 
 	@Override
@@ -59,11 +60,16 @@ public class Player extends Character{
 		for(i = 0; i < this.inventory.size(); i++) {
 			System.out.println(this.inventory.get(i).get_name());
 		}
+		System.out.println("ゴールド・・・" + this.gold + "Ｇ");
 	}
 
+	public void pickup_drops() {
+
+	}
 
 	static int read_key() {
 		String str = "";
+		System.out.print("ソウサ：");
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			str = br.readLine();
