@@ -14,9 +14,9 @@ public class main {
 		char map[][] = new char[Height][Width];
 		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
-		Player player = new Player("ユウシャ", 10, 0, 0, 5);
-		enemies.add(new Zombie("ゾンビA", 10, 4, 0));
-		enemies.add(new Zombie("ゾンビB", 10, 3, 3));
+		Player player = new Player("ユウシャ", '勇', 10, 0, 0, 5);
+		enemies.add(new Zombie("ゾンビA", 'ゾ', 10, 4, 0));
+		enemies.add(new Zombie("ゾンビB", 'ゾ', 10, 3, 3));
 
 		for(;;){
 			System.out.println(player.get_name() + "　ＨＰ：" + player.get_hp());
@@ -53,9 +53,11 @@ public class main {
 				battle(player, enemies.get(i));
 
 			if(enemies.get(i).get_hp() <= 0){
-				System.out.println(enemies.get(i).get_name() + " を　たおした");
+				System.out.println(player.get_name() + "　は　" + enemies.get(i).get_name() 
+						+ " を　たおした");
 				enemies.remove(i);
-				break;}
+				i = 0;
+			}
 		}
 	}
 
@@ -78,7 +80,7 @@ public class main {
 		for(i = 0; i < map.length; i++){
 			for(j = 0; j < map[0].length; j++) {
 				if(i == p_pos[1] && j == p_pos[0])
-					map[i][j] = '勇';
+					map[i][j] = p.get_token();
 				else if(i == map.length - 1 && j == map[0].length - 1)
 					map[i][j] = 'Ｇ';
 				else if((i == 1 || i == 2 || i == 3 || i == 4 || i == 5) && j == 4)
@@ -89,7 +91,7 @@ public class main {
 		}
 
 		for(i = 0; i < e.size(); i++)
-			map[e.get(i).get_position()[1]][e.get(i).get_position()[0]] = '×';
+			map[e.get(i).get_position()[1]][e.get(i).get_position()[0]] = e.get(i).get_token();
 
 
 

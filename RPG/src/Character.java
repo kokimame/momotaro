@@ -2,14 +2,16 @@
 public class Character {
 
 	private String name;
+	private char token;
 	private int hp;
 	private int x;
 	private int y;
 	private int attack;
 
 
-	public Character(String name, int hp, int x, int y, int ap) {
+	public Character(String name, char token, int hp, int x, int y, int ap) {
 		this.name = name;
+		this.token = token;
 		this.hp = hp;
 		this.x = x;
 		this.y = y;
@@ -65,7 +67,11 @@ public class Character {
 	}
 	
 	public String get_name() {
-		return name;
+		return this.name;
+	}
+
+	public char get_token() {
+		return this.token;
 	}
 
 
