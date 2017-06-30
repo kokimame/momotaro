@@ -37,6 +37,14 @@ public class Item {
 		return this.token;
 	}
 
+	public int get_point() {
+		return this.point;
+	}
+
+	public char get_type() {
+		return this.type;
+	}
+
 	public int[] get_position() {
 		int[] pos = new int[2];
 		pos[0] = this.x;

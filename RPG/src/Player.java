@@ -63,8 +63,12 @@ public class Player extends Character{
 		System.out.println("ゴールド・・・" + this.gold + "Ｇ");
 	}
 
-	public void pickup_drops() {
-
+	public void pickup(Item item) {
+        System.out.println(this.get_name() + "　は　" + item.get_name() + "　を　ひろった");
+        if(item.get_type() == 'G')
+            this.gold += item.get_point();
+        else
+            this.add_item(item);
 	}
 
 	static int read_key() {

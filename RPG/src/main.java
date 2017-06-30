@@ -20,26 +20,24 @@ public class main {
 		enemies.add(new Zombie("ゾンビB", 'ゾ', 10, 3, 3));
 
 		for(;;){
-			System.out.println(player.get_name() + "　ＨＰ：" + player.get_hp());
 			show_map(map, player, enemies, drops);
 			update(player, enemies, drops);
-
 		}
 
 	}
 
 	static void update(Player player, ArrayList<Enemy> enemies, ArrayList<Item> drops) {
-		player.update();
 
-		near_enemies(player, enemies, drops);
+		player.update();
+		around_objects(player, enemies, drops);
 
 	}
 
-	static void near_enemies(Player player, ArrayList<Enemy> enemies, ArrayList<Item> drops) {
+	static void around_objects(Player player, ArrayList<Enemy> enemies, ArrayList<Item> drops) {
 
 		int i;
 		int[] p_pos = player.get_position();
-		int[] e_pos;
+		int[] e_pos, i_pos;
 
 		for(i = 0; i < enemies.size(); i++) {
 			e_pos = enemies.get(i).get_position();
@@ -59,6 +57,14 @@ public class main {
 				enemies.get(i).drop(drops);
 				enemies.remove(i);
 				i = 0;
+			}
+		}
+
+		for(i = 0; i < drops.size(); i++) {
+			i_pos = drops.get(i).get_position();
+			if(p_pos[0] == i_pos[0] && p_pos[1] == i_pos[1]) {
+				player.pickup(drops.get(i));
+				drops.remove(i);
 			}
 		}
 	}
