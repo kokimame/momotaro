@@ -19,7 +19,7 @@ public class Enemy extends Character{
 
 	public void drop(ArrayList<Item> map_drops) {
 		if(this.has_drop()) {
-			System.out.println(super.get_name() + "　が　" + this.drop.get_name() + "　を　おとした");
+			System.out.println(super.get_name() + "　は　" + this.drop.get_name() + "　を　おとした");
 			map_drops.add(this.drop);
 		}
 		else

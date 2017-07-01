@@ -5,7 +5,7 @@ public class Item {
 	private char token;
 	/* The point an item holds (ex. the value for a Gold)  */
 	private int point;
-	/* Item type: 'A': Weapon, 'D': Sheild, 'G': Gold, 'H': Health */
+	/* Item type: 'A': Weapon, 'D': Shield, 'G': Gold, 'H': Health */
 	private char type;
 
 	/* Position of dropped item on the map  */
@@ -19,7 +19,7 @@ public class Item {
 		this.type = type;
 	}
 
-	// For dropped item
+	// For items to drop
 	public Item(String name, char token, int point, char type, int x, int y) {
 		this.name = name;
 		this.token = token;

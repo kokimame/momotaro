@@ -19,18 +19,26 @@ public class main {
 		enemies.add(new Zombie("ゾンビA", 'ゾ', 10, 4, 0));
 		enemies.add(new Zombie("ゾンビB", 'ゾ', 10, 3, 3));
 
-		for(;;){
+		do{
 			show_map(map, player, enemies, drops);
-			update(player, enemies, drops);
-		}
-
+			game_loop(player, enemies, drops);
+		}while(!player.on_the_goal(Width - 1, Height - 1));
+		
+		show_map(map, player, enemies, drops);
 	}
 
-	static void update(Player player, ArrayList<Enemy> enemies, ArrayList<Item> drops) {
-
-		player.update();
+	static void game_loop(Player player, ArrayList<Enemy> enemies, ArrayList<Item> drops) {
+		player.update(collision_pos(enemies));
 		around_objects(player, enemies, drops);
+	}
 
+	static ArrayList<int[]> collision_pos(ArrayList<Enemy> enemies) {
+		int i;
+		ArrayList <int []> c_pos = new ArrayList<int []>();
+		for(i = 0; i < enemies.size(); i++) {
+			c_pos.add(enemies.get(i).get_position());
+		}
+		return c_pos;
 	}
 
 	static void around_objects(Player player, ArrayList<Enemy> enemies, ArrayList<Item> drops) {
@@ -73,10 +81,10 @@ public class main {
 	static void battle(Player player, Enemy enemy) {
 
 		enemy.get_damage(player.attack());
-		System.out.println(player.get_name() + "　が　" + enemy.get_name() 
+		System.out.println(player.get_name() + "　は　" + enemy.get_name() 
 				+ "　に　" + player.attack() + "　の　ダメージ　を　あたえた");
 		player.get_damage(enemy.attack());
-		System.out.println(enemy.get_name() + "　が　" + player.get_name() 
+		System.out.println(enemy.get_name() + "　は　" + player.get_name() 
 				+ "　に　" + enemy.attack() + "　の　ダメージ　を　あたえた");
 
 	}
@@ -103,7 +111,6 @@ public class main {
 
 		for(i = 0; i < items.size(); i++)
 			map[items.get(i).get_position()[1]][items.get(i).get_position()[0]] = items.get(i).get_token();
-
 
 		for(i = 0; i < map.length; i++){
 			for(j = 0; j < map[0].length; j++) {

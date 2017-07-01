@@ -46,8 +46,11 @@ public class Player extends Character{
 	}
 
 
-	public void update() {
-		action(read_key());
+	public void update(ArrayList<int []> c_pos) {
+		int key = read_key();
+		// Stay if collision happened (key 5)
+		if(collide(key, c_pos)) key = 5;
+		action(key);
 	}
 
 	private void add_item(Item item) {
@@ -64,11 +67,20 @@ public class Player extends Character{
 	}
 
 	public void pickup(Item item) {
-        System.out.println(this.get_name() + "　は　" + item.get_name() + "　を　ひろった");
-        if(item.get_type() == 'G')
-            this.gold += item.get_point();
-        else
-            this.add_item(item);
+		System.out.println(this.get_name() + "　は　" + item.get_name() + "　を　ひろった");
+		if(item.get_type() == 'G')
+			this.gold += item.get_point();
+		else
+			this.add_item(item);
+	}
+	
+	public boolean on_the_goal(int x, int y) {
+		int [] pos = this.get_position();
+		if(pos[0] == x && pos[1] == y) {
+			System.out.println(this.get_name() + "は　ステージ　を　クリア　した");
+			return true;
+		}
+		else return false;
 	}
 
 	static int read_key() {

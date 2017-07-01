@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Character {
 
@@ -40,6 +41,47 @@ public class Character {
 		}
 	}
 
+	public boolean collide(int key, ArrayList<int []> c_pos) {
+		int[] new_pos = new int[2];
+		int i;
+		switch(key){
+		case 8:
+			new_pos[0] = this.x;
+			new_pos[1] = this.y - 1;
+			break;
+		case 6:
+			new_pos[0] = this.x + 1;
+			new_pos[1] = this.y;
+			break;
+		case 2:
+			new_pos[0] = this.x;
+			new_pos[1] = this.y + 1;
+			break;
+		case 4:
+			new_pos[0] = this.x - 1;
+			new_pos[1] = this.y;
+			break;
+		case 5:
+			return true;
+		default:
+			return false;
+		}
+		return contains_like(c_pos, new_pos);
+	}
+
+	// This partly substitutes ArrayList.contains for now
+	// when the original doesn't work well.
+	public boolean contains_like(ArrayList<int []> pos, int[] b) {
+		int i;
+
+		for(i = 0; i < pos.size(); i++){
+			if(pos.get(i)[0] == b[0] && pos.get(i)[1] == b[1]){
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public void go_up() {
 		this.y--;
 	}
@@ -73,7 +115,6 @@ public class Character {
 	public char get_token() {
 		return this.token;
 	}
-
 
 	public int[] get_position() {
 		int[] pos = new int[2];
