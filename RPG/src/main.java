@@ -16,13 +16,13 @@ public class main {
 		ArrayList<Item> drops = new ArrayList<Item>();
 
 		Player player = new Player("ユウシャ", '勇', 10, 0, 0, 5);
-		enemies.add(new Zombie("ゾンビA", 'ゾ', 10, 4, 0));
-		enemies.add(new Zombie("ゾンビB", 'ゾ', 10, 3, 3));
+		enemies.add(new Zombie("ゾンビA", '☣', 10, 4, 0));
+		enemies.add(new Zombie("ゾンビB", '☣', 10, 3, 3));
 
 		do{
 			show_map(map, player, enemies, drops);
 			game_loop(player, enemies, drops);
-		}while(!player.on_the_goal(Width - 1, Height - 1));
+		}while(!player.is_at_pos(Width - 1, Height - 1));
 		
 		show_map(map, player, enemies, drops);
 	}
@@ -80,10 +80,10 @@ public class main {
 
 	static void battle(Player player, Enemy enemy) {
 
-		enemy.get_damage(player.attack());
+		enemy.get_damaged(player.attack());
 		System.out.println(player.get_name() + "　は　" + enemy.get_name() 
 				+ "　に　" + player.attack() + "　の　ダメージ　を　あたえた");
-		player.get_damage(enemy.attack());
+		player.get_damaged(enemy.attack());
 		System.out.println(enemy.get_name() + "　は　" + player.get_name() 
 				+ "　に　" + enemy.attack() + "　の　ダメージ　を　あたえた");
 

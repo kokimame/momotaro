@@ -7,7 +7,7 @@ public class Character {
 	private int hp;
 	private int x;
 	private int y;
-	private int attack;
+	private int ap; // Attack point
 
 
 	public Character(String name, char token, int hp, int x, int y, int ap) {
@@ -16,7 +16,7 @@ public class Character {
 		this.hp = hp;
 		this.x = x;
 		this.y = y;
-		this.attack = ap; // Attack point
+		this.ap = ap;
 	}
 
 	public void action(int key){
@@ -96,16 +96,20 @@ public class Character {
 	}
 
 	public int attack() {
-		return attack;
+		return this.ap;
 	}
 
-	public void get_damage(int damage) {
+	public void get_damaged(int damage) {
 		this.hp -= damage;
 	}
 
 
 	public int get_hp() {
 		return this.hp;
+	}
+	
+	public int get_ap() {
+		return this.ap;
 	}
 	
 	public String get_name() {
@@ -123,6 +127,14 @@ public class Character {
 		pos[1] = y;
 
 		return pos;
+	}
+	
+	public void add_hp(int hp) {
+		this.hp += hp;
+	}
+	
+	public void add_ap(int ap) {
+		this.ap += ap;
 	}
 
 }

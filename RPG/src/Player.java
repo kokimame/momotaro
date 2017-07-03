@@ -16,7 +16,8 @@ public class Player extends Character{
 		this.gold = 0;
 
 		add_item(new Item("ツルギ", '剣', 10, 'A'));
-		add_item(new Item("ヤクソウ", '薬', 10, 'H'));
+		add_item(new Item("ヤクソウ", '草', 10, 'H'));
+		add_item(new Item("キョウカヤク", '強', 5, 'A'));
 	}
 
 	@Override
@@ -37,7 +38,7 @@ public class Player extends Character{
 		case 5: // Stay
 			break;
 		case 0:
-			show_inventory();
+			menu_handler();
 			break;
 		default:
 			System.out.println("key error");
@@ -47,7 +48,7 @@ public class Player extends Character{
 
 
 	public void update(ArrayList<int []> c_pos) {
-		int key = read_key();
+		int key = read_key(1);
 		// Stay if collision happened (key 5)
 		if(collide(key, c_pos)) key = 5;
 		action(key);
@@ -57,13 +58,68 @@ public class Player extends Character{
 		this.inventory.add(item);
 	}
 
-	public void show_inventory() {
+	public void menu_handler() {
 		int i;
-		System.out.println("・・・ショジヒン・・・");
-		for(i = 0; i < this.inventory.size(); i++) {
-			System.out.println(this.inventory.get(i).get_name());
+		int key;
+				
+		while(true){
+			System.out.println("　・・・　ステータス　・・・　");
+			System.out.println("たいりょく　：　" + this.get_hp());
+			System.out.println("こうげき : " + this.get_ap());
+			
+			System.out.println("　・・・　ショジヒン　・・・　");
+			for(i = 0; i < this.inventory.size(); i++) {
+				System.out.println(this.inventory.get(i).get_name());
+			}
+			System.out.println("ゴールド・・・" + this.gold + "Ｇ");
+			System.out.println("●　アイテム　を　つかう？:1");
+			System.out.println("●　メニュー　を　とじる？:0");
+			key = read_key(2);
+			if(key == 1){
+				if(this.inventory.size() == 0) System.out.println("アイテム が　ありません");
+				else choose_item(inventory);
+			}
+			else if(key == 0) break;
 		}
-		System.out.println("ゴールド・・・" + this.gold + "Ｇ");
+	}
+	
+	public void choose_item(ArrayList<Item> inventory){
+		int i;
+		int key;
+		
+		while(true){
+			System.out.println("どれ　を　つかいますか？");
+			for(i = 0; i < inventory.size(); i++){
+				System.out.println(i + "　．．．　" + inventory.get(i).get_name());
+			}
+			key = read_key(2);
+			if(0 <= key && key < inventory.size()){
+				this.use_item(inventory.get(key));
+				inventory.remove(key);
+			}
+			else{
+				System.out.println("そんざい　しません");
+			}
+
+			if(inventory.size() == 0) break;
+			System.out.println("つづけて　つかいますか？");
+			System.out.println("つかう:1, やめる:0");
+			key = read_key(2);
+			if(key == 0) break;
+			else if(key == 1) continue;
+		}
+	}
+
+	public void use_item(Item item) {
+		switch(item.get_type()){
+		case 'H':
+			this.add_hp(item.get_point());
+			break;
+		case 'A':
+			this.add_ap(item.get_point());
+			break;
+		}
+		System.out.println(item.get_status_code() + " が　" + item.get_point() + "　あがった");
 	}
 
 	public void pickup(Item item) {
@@ -74,7 +130,7 @@ public class Player extends Character{
 			this.add_item(item);
 	}
 	
-	public boolean on_the_goal(int x, int y) {
+	public boolean is_at_pos(int x, int y) {
 		int [] pos = this.get_position();
 		if(pos[0] == x && pos[1] == y) {
 			System.out.println(this.get_name() + "は　ステージ　を　クリア　した");
@@ -83,9 +139,9 @@ public class Player extends Character{
 		else return false;
 	}
 
-	static int read_key() {
+	private int read_key(int type) {
 		String str = "";
-		System.out.print("ソウサ：");
+		System.out.print("\nソウサ：");
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			str = br.readLine();
@@ -95,10 +151,15 @@ public class Player extends Character{
 		}
 		int key = Integer.parseInt(str);
 
-		if(key == 8 || key == 6 || key == 2 || key == 4 || key == 5 || key == 0)
-			return key;
-		else
-			return -1;
+		if(type == 1) {
+			if(key == 8 || key == 6 || key == 2 || key == 4 || key == 5 || key == 0)
+				return key;
+		}
+		else if(type == 2) {
+			if(0 <= key && key < 10)
+				return key;
+		}
+		return -1;
 
 	}
 

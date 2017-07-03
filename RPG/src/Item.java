@@ -5,13 +5,14 @@ public class Item {
 	private char token;
 	/* The point an item holds (ex. the value for a Gold)  */
 	private int point;
-	/* Item type: 'A': Weapon, 'D': Shield, 'G': Gold, 'H': Health */
+	/* Item type: 'A': Attack, 'D': Defense, 'G': Gold, 'H': Health, 'X': Others */
 	private char type;
 
 	/* Position of dropped item on the map  */
 	private int x;
 	private int y;
 
+	// Items to store in player's inventory
 	public Item(String name, char token, int point, char type) {
 		this.name = name;
 		this.token = token;
@@ -19,7 +20,7 @@ public class Item {
 		this.type = type;
 	}
 
-	// For items to drop
+	// Items with x-y coordinates dropped on the map
 	public Item(String name, char token, int point, char type, int x, int y) {
 		this.name = name;
 		this.token = token;
@@ -27,6 +28,10 @@ public class Item {
 		this.type = type;
 		this.x = x;
 		this.y = y;
+	}
+	
+	public String get_status_code() {
+		return this.type + "P";
 	}
 
 	public String get_name(){
