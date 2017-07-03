@@ -1,25 +1,14 @@
 ### はりぼて roguelike RPG
+Hosted at https://github.com/kokimame/textile
 
-## Compile from command line
-cd src
+ストーリーはstory.txt　クラス図はclass_diagram.pngに掲載
 
-javac main.java
+## ストーリー
+> とある世界において，PlayerがEnemyに立ち向かいながら冒険をしていた．
+> 今Playerがいる場所は，荒廃した場所で，EnemyとしてZombieにあふれている．
+> PlayerとEnemyは共に，HP(Heart Point)とAP(Attack Point)を有しており，戦うことでPlayerは目的地へと突き進む．
+> そこで，PlayerはItemを駆使して，回復や攻撃力を上昇させ，生存を第一に目的地へと向かうのであった．
 
-java main
+## クラス図
 
-できたクラスファイルはbinに入れておこう
-
-## How to contribute
-Githubでこのレポをfork
-
-ローカルにコピー)  git clone https://github.com/<username\>/textile.git
-
-変更箇所をステージ)  git add \<modified or new files\>
-
-リモートの変更準備)  git commit -m "message for a commit"
-
-リモートに変更を反映)  git push origin master
-
-GithubでPRを送る．
-
-その他．．．　git status / git diff等
+![image](class_diagram.png)
