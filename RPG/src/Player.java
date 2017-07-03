@@ -15,9 +15,9 @@ public class Player extends Character{
 		this.y = y;
 		this.gold = 0;
 
-		add_item(new Item("ツルギ", '剣', 10, 'A'));
-		add_item(new Item("ヤクソウ", '草', 10, 'H'));
-		add_item(new Item("キョウカヤク", '強', 5, 'A'));
+		add_item(new Item("つるぎ", '剣', 10, 'A'));
+		add_item(new Item("やくそう", '草', 10, 'H'));
+		add_item(new Item("きょうかやく", '強', 5, 'A'));
 	}
 
 	@Override
@@ -41,7 +41,6 @@ public class Player extends Character{
 			menu_handler();
 			break;
 		default:
-			System.out.println("key error");
 			break;
 		}
 	}
@@ -67,7 +66,7 @@ public class Player extends Character{
 			System.out.println("たいりょく　：　" + this.get_hp());
 			System.out.println("こうげき : " + this.get_ap());
 			
-			System.out.println("　・・・　ショジヒン　・・・　");
+			System.out.println("　・・・　アイテム　・・・　");
 			for(i = 0; i < this.inventory.size(); i++) {
 				System.out.println(this.inventory.get(i).get_name());
 			}
@@ -103,7 +102,7 @@ public class Player extends Character{
 
 			if(inventory.size() == 0) break;
 			System.out.println("つづけて　つかいますか？");
-			System.out.println("つかう:1, やめる:0");
+			System.out.println("つかう:1　　やめる:0");
 			key = read_key(2);
 			if(key == 0) break;
 			else if(key == 1) continue;
@@ -123,14 +122,15 @@ public class Player extends Character{
 	}
 
 	public void pickup(Item item) {
-		System.out.println(this.get_name() + "　は　" + item.get_name() + "　を　ひろった");
+		System.out.println(this.get_name() + "　は　" + item.get_name() + "　を　てにいれた"
+				+ "");
 		if(item.get_type() == 'G')
 			this.gold += item.get_point();
 		else
 			this.add_item(item);
 	}
 	
-	public boolean is_at_pos(int x, int y) {
+	public boolean goal_judge(int x, int y) {
 		int [] pos = this.get_position();
 		if(pos[0] == x && pos[1] == y) {
 			System.out.println(this.get_name() + "は　ステージ　を　クリア　した");
@@ -141,6 +141,8 @@ public class Player extends Character{
 
 	private int read_key(int type) {
 		String str = "";
+		int key;
+		
 		System.out.print("\nソウサ：");
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -149,7 +151,14 @@ public class Player extends Character{
 		catch(IOException e) {
 			System.out.println("IOError");
 		}
-		int key = Integer.parseInt(str);
+		
+		try {
+			key = Integer.parseInt(str);
+		}
+		catch(NumberFormatException e) {
+			System.out.println("ソウサ　フカ");
+			key = 5;
+		}
 
 		if(type == 1) {
 			if(key == 8 || key == 6 || key == 2 || key == 4 || key == 5 || key == 0)

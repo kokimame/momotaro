@@ -19,10 +19,15 @@ public class main {
 		enemies.add(new Zombie("ゾンビA", '☣', 10, 4, 0));
 		enemies.add(new Zombie("ゾンビB", '☣', 10, 3, 3));
 
+		System.out.println("----------------");
+		System.out.println("Move:↑:8 ↓:2 ←:4 →:6, Stay:5");
+		System.out.println("Menu:0");
+		System.out.println("----------------");
+		
 		do{
 			show_map(map, player, enemies, drops);
 			game_loop(player, enemies, drops);
-		}while(!player.is_at_pos(Width - 1, Height - 1));
+		}while(!player.goal_judge(Width - 1, Height - 1));
 		
 		show_map(map, player, enemies, drops);
 	}
@@ -38,6 +43,13 @@ public class main {
 		for(i = 0; i < enemies.size(); i++) {
 			c_pos.add(enemies.get(i).get_position());
 		}
+		// FIXME: Walls definition are separated among functions.
+		for(i = 1; i < 6; i++) {
+			int[] wall  = new int[2];
+			wall[0] = 4; wall[1] = i;
+			c_pos.add(wall);
+		}
+
 		return c_pos;
 	}
 
