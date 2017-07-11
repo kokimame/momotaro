@@ -5,19 +5,17 @@ import java.util.ArrayList;
 
 public class Player extends Character{
 
-	int x, y;
 	int gold;		// Total value of golds the player has
 	private ArrayList<Item> inventory = new ArrayList<Item>();
 
 	public Player(String name, char token, int hp, int x, int y, int ap){
 		super(name, token, hp, x, y, ap);
-		this.x = x;
-		this.y = y;
 		this.gold = 0;
 
 		add_item(new Item("つるぎ", '剣', 10, 'A'));
-		add_item(new Item("やくそう", '草', 10, 'H'));
-		add_item(new Item("きょうかやく", '強', 5, 'A'));
+		add_item(new Item("きびだんご", 'き', 5, 'H'));
+		add_item(new Item("きびだんご", 'き', 5, 'H'));
+		add_item(new Item("きびだんご", 'き', 5, 'H'));
 	}
 
 	@Override
