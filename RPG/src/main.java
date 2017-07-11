@@ -17,9 +17,12 @@ public class main {
 		ArrayList<Item> drops = new ArrayList<Item>();
 
 		// To their great surprise, a healthy baby boy came right out of the peach!
-		Player player = new Player("モモタロウ", '桃', 10, 0, 0, 5);
-		charas.add(new Zombie("ゾンビA", '☣', 10, 4, 0));
-		charas.add(new Zombie("ゾンビB", '☣', 10, 3, 3));
+		Player player = new Player("モモタロウ", '桃', 10, 0, 0, 0);
+		charas.add(new Zombie("ゾンビA", 'ゾ', 10, 4, 0));
+		charas.add(new Zombie("ゾンビB", 'ゾ', 10, 3, 3));
+		charas.add(new Animal("イヌ", '犬', 10, 0, 2, 2));
+		charas.add(new Animal("サル", '猿', 10, 7, 0, 2));
+		charas.add(new Animal("キジ", '雉', 10, 5, 2, 2));
 
 		System.out.println("----------------");
 		System.out.println("Move:↑:8 ↓:2 ←:4 →:6, Stay:5");
@@ -63,29 +66,41 @@ public class main {
 
 		int i;
 		int[] p_pos = player.get_position();
-		int[] e_pos, i_pos; // Enemy and Item position
+		// FIXME: Use ch_pos to store positions of all objects under Character.
+		int[] ch_pos, i_pos; // Character and Item position
 
 		for(i = 0; i < charas.size(); i++) {
-			if(charas.get(i) instanceof Enemy == false) continue;
-			// TODO: Refer here "down-casting" relating to OOP
-			Enemy enemy = (Enemy)charas.get(i);
-			e_pos = enemy.get_position();
-			
-			if(p_pos[0] == e_pos[0] - 1 && p_pos[1] == e_pos[1])
-				battle(player, enemy);
-			else if(p_pos[0] == e_pos[0] + 1 && p_pos[1] == e_pos[1])
-				battle(player, enemy);
-			else if(p_pos[0] == e_pos[0] && p_pos[1] == e_pos[1] - 1)
-				battle(player, enemy);
-			else if(p_pos[0] == e_pos[0] && p_pos[1] == e_pos[1] + 1)
-				battle(player, enemy);
-
-			if(charas.get(i).get_hp() <= 0){
-				System.out.println(player.get_name() + "　は　" + enemy.get_name() 
-						+ " を　たおした");
-				enemy.drop(drops);
-				charas.remove(i);
-				i = 0;
+			ch_pos = charas.get(i).get_position();
+			if(charas.get(i) instanceof Enemy){
+				// TODO: Refer here "down-casting" relating to OOP
+				Enemy enemy = (Enemy)charas.get(i);
+				
+				if(p_pos[0] == ch_pos[0] - 1 && p_pos[1] == ch_pos[1])
+					battle(player, enemy);
+				else if(p_pos[0] == ch_pos[0] + 1 && p_pos[1] == ch_pos[1])
+					battle(player, enemy);
+				else if(p_pos[0] == ch_pos[0] && p_pos[1] == ch_pos[1] - 1)
+					battle(player, enemy);
+				else if(p_pos[0] == ch_pos[0] && p_pos[1] == ch_pos[1] + 1)
+					battle(player, enemy);
+	
+				if(enemy.get_hp() <= 0){
+					System.out.println(player.get_name() + "　は　" + enemy.get_name() 
+							+ " を　たおした");
+					enemy.drop(drops);
+					charas.remove(i);
+					i = 0;
+				}
+			}
+			else if(charas.get(i) instanceof Animal){
+				Animal animal = (Animal)charas.get(i);
+				if(p_pos[0] == ch_pos[0] - 1 && p_pos[1] == ch_pos[1] ||
+				   p_pos[0] == ch_pos[0] + 1 && p_pos[1] == ch_pos[1] ||
+				   p_pos[0] == ch_pos[0] && p_pos[1] == ch_pos[1] - 1 ||
+				   p_pos[0] == ch_pos[0] && p_pos[1] == ch_pos[1] + 1){
+					if(player.pickup(animal))
+						charas.remove(i);
+				}
 			}
 		}
 
@@ -119,17 +134,24 @@ public class main {
 				if(i == p_pos[1] && j == p_pos[0])
 					map[i][j] = p.get_token();
 				else if(i == map.length - 1 && j == map[0].length - 1)
-					map[i][j] = '◎';
+					map[i][j] = '島';
 				else if((i == 1 || i == 2 || i == 3 || i == 4 || i == 5) && j == 4)
-					map[i][j] = '■';
+					map[i][j] = '壁';
+				else if(i == 0 && j == 0)
+					map[i][j] = '村';
 				else
-					map[i][j] = '□';
+					map[i][j] = '口';
 			}
 		}
 
 		for(i = 0; i < charas.size(); i++)
 			map[charas.get(i).get_position()[1]][charas.get(i).get_position()[0]] =
 							charas.get(i).get_token();
+		
+		for(i = 0; i < p.get_animals().size(); i++){
+			Animal animal = p.get_animals().get(i);
+			map[animal.get_position()[1]][animal.get_position()[0]] = animal.get_token();
+		}
 
 		for(i = 0; i < items.size(); i++)
 			map[items.get(i).get_position()[1]][items.get(i).get_position()[0]] = items.get(i).get_token();

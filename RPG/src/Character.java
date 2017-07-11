@@ -129,6 +129,15 @@ public class Character {
 		return pos;
 	}
 	
+	public void set_position(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public void set_token(char token) {
+		this.token = token;
+	}
+	
 	public void add_hp(int hp) {
 		this.hp += hp;
 	}
