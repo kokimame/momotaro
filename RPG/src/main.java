@@ -50,8 +50,8 @@ public class main {
 		}
 		// FIXME: Wall definition are separated among functions.
 		// Hopefully there should be a map object binding all these stuff.
-		for(i = -1; i < 6; i++) {
-			for(j = -1; j < 8; j++) {
+		for(i = -1; i <= 6; i++) {
+			for(j = -1; j <= 8; j++) {
 				if((j == 4 && i >= 1 && i <= 5) || (j == -1 || j == 8 || i == -1 || i == 6)){
 					int[] wall  = new int[2];
 					wall[0] = j; wall[1] = i;
