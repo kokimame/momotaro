@@ -155,8 +155,7 @@ public class Player extends Character{
 	}
 
 	public void pickup(Item item) {
-		System.out.println(this.get_name() + "　は　" + item.get_name() + "　を　てにいれた"
-				+ "");
+		System.out.println(this.get_name() + "　は　" + item.get_name() + "　を　てにいれた");
 		if(item.get_type() == 'G')
 			this.gold += item.get_point();
 		else
@@ -175,17 +174,13 @@ public class Player extends Character{
 				return true;
 			}
 		}
-		System.out.println(this.get_name() + "　きびだんご　を　もっていない");
+		System.out.println(this.get_name() + "　は　きびだんご　を　もっていない");
 		return false;
 	}
 	
 	public boolean goal_judge(int x, int y) {
 		int [] pos = this.get_position();
-		if(pos[0] == x && pos[1] == y) {
-			System.out.println(this.get_name() + "は　ステージ　を　クリア　した");
-			return true;
-		}
-		else return false;
+		return (pos[0] == x && pos[1] == y);
 	}
 	
 	public ArrayList<Animal> get_animals() {

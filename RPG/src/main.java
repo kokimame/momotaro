@@ -29,12 +29,16 @@ public class main {
 		System.out.println("Open Menu:0");
 		System.out.println("----------------");
 		
-		do{
+		for(;;){
 			show_map(map, player, charas, drops);
 			game_loop(player, charas, drops);
-		}while(!player.goal_judge(Width - 1, Height - 1));
+			if(player.goal_judge(Width - 1, Height - 1)) {
+				break;
+			}
+		}
 		
 		show_map(map, player, charas, drops);
+		System.out.println("\n\n\n\n\n\n\nめでたしめでたし");
 	}
 
 	static void game_loop(Player player, ArrayList<Character> charas, ArrayList<Item> drops) {
@@ -136,7 +140,7 @@ public class main {
 				else if(i == map.length - 1 && j == map[0].length - 1)
 					map[i][j] = '島';
 				else if((i == 1 || i == 2 || i == 3 || i == 4 || i == 5) && j == 4)
-					map[i][j] = '壁';
+					map[i][j] = '川';
 				else if(i == 0 && j == 0)
 					map[i][j] = '村';
 				else
