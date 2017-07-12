@@ -11,4 +11,4 @@ Hosted at https://github.com/kokimame/textile
 
 ## クラス図
 
-![image](class_diagram.png)
+![image](momos_classes.png)
