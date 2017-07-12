@@ -1,13 +1,11 @@
 ### はりぼて roguelike RPG
-Hosted at https://github.com/kokimame/textile
+Hosted at https://github.com/kokimame/momotaro
 
-ストーリーはstory.txt　クラス図はclass_diagram.pngに掲載
+ストーリーはstory.txt　クラス図はmomos_classes.pngに掲載
 
 ## ストーリー
-> とある世界において，PlayerがEnemyに立ち向かいながら冒険をしていた．
-> 今Playerがいる場所は，荒廃した場所で，EnemyとしてZombieにあふれている．
-> PlayerとEnemyは共に，HP(Heart Point)とAP(Attack Point)を有しており，戦うことでPlayerは目的地へと突き進む．
-> そこで，PlayerはItemを駆使して，回復や攻撃力を上昇させ，生存を第一に目的地へと向かうのであった．
+> 「桃太郎」が、お婆さんから黍団子（きびだんご）を貰って、イヌ、サル、キジを従えて、鬼ヶ島まで鬼を退治しに行く物語。（引用：Wikipedia）
+> 道中，ゾンビ等のモダンな魑魅魍魎が遭遇することも
 
 ## クラス図
 
