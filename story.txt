@@ -1,9 +1,2 @@
-ƒƒXƒg[ƒŠ[„
-‚Æ‚ ‚é¢ŠE‚É‚¨‚¢‚ÄCPlayer‚ªEnemy‚É—§‚¿Œü‚©‚¢‚È‚ª‚ç–`Œ¯‚ð‚µ‚Ä‚¢‚½D
-¡Player‚ª‚¢‚éêŠ‚ÍCr”p‚µ‚½êŠ‚ÅCEnemy‚Æ‚µ‚ÄZombie‚É‚ ‚Ó‚ê‚Ä‚¢‚éD
-Player‚ÆEnemy‚Í‹¤‚ÉCHP(Heart Point)‚ÆAP(Attack Point)‚ð—L‚µ‚Ä‚¨‚èCí‚¤‚±‚Æ‚ÅPlayer‚Í–Ú“I’n‚Ö‚Æ“Ë‚«i‚ÞD
-‚»‚±‚ÅCPlayer‚ÍItem‚ð‹ìŽg‚µ‚ÄC‰ñ•œ‚âUŒ‚—Í‚ðã¸‚³‚¹C¶‘¶‚ð‘æˆê‚É–Ú“I’n‚Ö‚ÆŒü‚©‚¤‚Ì‚Å‚ ‚Á‚½D
-
-
-E”õl
-Player‚âEnemy‚ÍCCharacter‚Æis-aŠÖŒW‚ÉCPlayer‚ÆItem‚Íhas-aŠÖŒW‚É‚ ‚éD
+ã€Œæ¡ƒå¤ªéƒŽã€ãŒã€ãŠå©†ã•ã‚“ã‹ã‚‰é»å›£å­ï¼ˆãã³ã ã‚“ã”ï¼‰ã‚’è²°ã£ã¦ã€ã‚¤ãƒŒã€ã‚µãƒ«ã€ã‚­ã‚¸ã‚’å¾“ãˆã¦ã€é¬¼ãƒ¶å³¶ã¾ã§é¬¼ã‚’é€€æ²»ã—ã«è¡Œãç‰©èªžã€‚ï¼ˆå¼•ç”¨ï¼šWikipediaï¼‰
+é“ä¸­ï¼Œã‚¾ãƒ³ãƒ“ç­‰ã®ãƒ¢ãƒ€ãƒ³ãªé­‘é­…é­é­ŽãŒé­é‡ã™ã‚‹ã“ã¨ã‚‚

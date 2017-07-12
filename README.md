@@ -1,4 +1,4 @@
-### はりぼて roguelike RPG
+### オブジェクト指向な桃太郎
 Hosted at https://github.com/kokimame/momotaro
 
 ストーリーはstory.txt　クラス図はmomos_classes.pngに掲載
